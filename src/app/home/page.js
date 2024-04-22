@@ -1,9 +1,10 @@
 import { Home } from "@/components/component/home";
 import React from "react";
-import { unstable_noStore as noStore } from "next/cache";
+import Auth from "@/lib/models/auth";
 
-const page = () => {
-  noStore();
+const page = async () => {
+  Auth.isNotLogged();
+  Auth.getAuthData();
   return (
     <>
       <Home />

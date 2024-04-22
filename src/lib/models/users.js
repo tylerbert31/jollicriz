@@ -1,4 +1,5 @@
-import AppModel from "./app_model";
+import AppModel, { pb } from "./app_model";
+import { cookies } from "next/headers";
 
 class UserModel extends AppModel {
   buildProfileURL(data, fieldName) {

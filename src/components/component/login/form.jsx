@@ -1,11 +1,17 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { showToast } from "@/util/sweetalert2/toast";
+import Cookies from "universal-cookie";
+import { useRouter } from "next/navigation";
+import BrowserModel from "@/lib/models/browser_model";
+
+const cookies = new Cookies();
 
 const LoginForm = () => {
   const [username, setUser] = useState("");
   const [password, setPass] = useState("");
   const [isLoading, loading] = useState(false);
+  const router = useRouter();
 
   const login = async (e) => {
     e.preventDefault();
@@ -22,12 +28,18 @@ const LoginForm = () => {
       }),
     }).then((res) => res.json());
 
-    loading(false);
-
     if (log.status === 200) {
       showToast("success", "Success");
+      cookies.set(BrowserModel.authCookieName, log.hash, {
+        path: "/",
+        secure: true,
+      });
+      setTimeout(() => {
+        router.push("/home");
+      }, 1300);
     } else {
-      showToast("error", "Account invalid");
+      showToast("error", "Account Invalid");
+      loading(false);
     }
   };
   return (

@@ -9,6 +9,11 @@ export default class AppModel {
     this.collection = collection_name;
     this.memcache = new NodeCache({ stdTTL: 600, checkperiod: 120 });
     this.pb_url = process.env.PB_URL;
+    this.authCookieName = "_PBLog";
+  }
+
+  getCookieName() {
+    return this.authCookieName;
   }
 
   async findAll() {

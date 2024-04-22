@@ -11,6 +11,14 @@ class UsersScheduleModel extends AppModel {
     });
     return user_scheds;
   }
+
+  async mySchedules(id) {
+    const myScheds = await this.findAllWhere({
+      filter: `user_id='${id}'`,
+      sort: "day",
+    });
+    return myScheds;
+  }
 }
 
 const UserSchedule = new UsersScheduleModel("user_scheds");
