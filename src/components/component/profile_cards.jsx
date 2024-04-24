@@ -2,6 +2,7 @@ import React from "react";
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import User from "@/lib/models/users";
 import UserSchedule from "@/lib/models/user_schedules";
+import Auth from "@/lib/models/auth";
 
 const ProfileCards = async () => {
   const users = await User.findAll().then((e) =>
@@ -27,7 +28,7 @@ const ProfileCards = async () => {
             </Avatar>
             <div>
               <h4 className="text-sm font-sans font-semibold">
-                {user.username}
+                {user.id == Auth.getId() ? "Me" : user.username}
               </h4>
               {schedules[user.id] && schedules[user.id] == true ? (
                 <p className="text-xs text-green-500 dark:text-green-400">
