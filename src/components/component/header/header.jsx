@@ -33,9 +33,9 @@ const Header = () => {
               <DropdownMenuItem>Profile</DropdownMenuItem>
             </Link>
             <DropdownMenuSeparator />
-            <Logout>
+            <Link href="/logout">
               <DropdownMenuItem>Logout</DropdownMenuItem>
-            </Logout>
+            </Link>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

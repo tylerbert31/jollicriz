@@ -5,7 +5,7 @@ export async function POST(request) {
   try {
     const authData = await Auth.login(data.username, data.password);
     return Response.json(
-      { message: "success", status: 200, hash: authData.token },
+      { message: "success", status: 200, hash: authData.record.id },
       { status: 200 }
     );
   } catch (error) {

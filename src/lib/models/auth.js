@@ -20,10 +20,6 @@ class AuthModel extends AppModel {
       redirect("/");
     }
   }
-
-  async getAuthData() {
-    const token = cookies().get(BrowserModel.authCookieName).value;
-  }
 }
 
 const Auth = new AuthModel("users");

@@ -1,4 +1,5 @@
 import AppModel, { pb } from "./app_model";
+import memcache from "@/util/node-cache/node-cache";
 import { cookies } from "next/headers";
 
 class UserModel extends AppModel {
@@ -17,6 +18,34 @@ class UserModel extends AppModel {
     } else {
       return [];
     }
+  }
+
+  async userExist(token) {
+    token = token.value;
+    const cachedUser = memcache.get(token);
+    if (cachedUser) {
+      return cachedUser;
+    }
+
+    try {
+      const res = await pb.collection(this.collection).getOne(token);
+      memcache.set(token, res, 3600);
+      return res;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  async getUserData() {
+    const token = cookies().get(this.authCookieName);
+    const cachedUser = memcache.get(token.value);
+    if (cachedUser) {
+      return cachedUser;
+    }
+    const user = await pb.collection(this.collection).getOne(token.value);
+
+    memcache.set(token.value, user, 3600);
+    return user;
   }
 }
 
