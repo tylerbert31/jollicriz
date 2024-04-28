@@ -1,6 +1,7 @@
 import ProfileCards from "./profile_cards";
 import CommentSection from "./comments";
 import Header from "./header/header";
+import { Suspense } from "react";
 
 export async function Home() {
   return (
@@ -8,7 +9,9 @@ export async function Home() {
       <Header />
       <main className="flex-1 overflow-auto p-4">
         <ProfileCards />
-        <CommentSection />
+        <Suspense fallback={<>asd</>}>
+          <CommentSection />
+        </Suspense>
       </main>
     </div>
   );

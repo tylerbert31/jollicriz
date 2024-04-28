@@ -9,7 +9,6 @@ import MySchedules from "@/components/component/myscheds/myscheds";
 async function Profile() {
   const userData = await User.getUserData();
   const myStatus = await UserSchedule.mySchedToday(userData.id);
-  const myScheds = await UserSchedule.mySchedules(userData.id);
   return (
     <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-900 min-w-[420px]">
       <Header />
@@ -40,7 +39,7 @@ async function Profile() {
             </div>
           </div>
         </section>
-        <MySchedules scheds={myScheds} />
+        <MySchedules userId={userData.id} />
       </main>
     </div>
   );
