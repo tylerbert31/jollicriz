@@ -20,6 +20,11 @@ class AuthModel extends AppModel {
       redirect("/");
     }
   }
+
+  getId() {
+    const id = cookies().get(BrowserModel.authCookieName);
+    return id.value;
+  }
 }
 
 const Auth = new AuthModel("users");

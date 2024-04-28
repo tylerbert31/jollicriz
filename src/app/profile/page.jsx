@@ -4,6 +4,7 @@ import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import User from "@/lib/models/users";
 import UserSchedule from "@/lib/models/user_schedules";
 import { Badge } from "@/components/ui/badge";
+import MySchedules from "@/components/component/myscheds/myscheds";
 
 async function Profile() {
   const userData = await User.getUserData();
@@ -38,6 +39,7 @@ async function Profile() {
             </div>
           </div>
         </section>
+        <MySchedules userId={userData.id} />
       </main>
     </div>
   );

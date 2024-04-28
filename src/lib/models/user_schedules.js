@@ -40,6 +40,10 @@ class UsersScheduleModel extends AppModel {
     memcache.set(`${id}-status`, mySched, 1800);
     return mySched;
   }
+
+  async updateSched(id, data) {
+    await pb.collection(this.collection).update(id, data);
+  }
 }
 
 const UserSchedule = new UsersScheduleModel("user_scheds");
