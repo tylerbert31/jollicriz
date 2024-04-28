@@ -251,7 +251,7 @@ function TimeOptions() {
     "10:00 PM",
     "11:00 PM",
     "12:00 AM",
-    "None",
+    "No Class",
   ];
 
   return (
