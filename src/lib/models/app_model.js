@@ -38,4 +38,13 @@ export default class AppModel {
     const pb_url = process.env.PB_URL;
     return `${pb_url}api/files/${data.collectionId}/${data.id}/${data[fileName]}`;
   }
+
+  async save(data) {
+    try {
+      const res = await pb.collection(this.collection).create(data);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  }
 }
