@@ -9,7 +9,7 @@ export async function Home() {
       <Header />
       <main className="flex-1 overflow-auto p-4">
         <ProfileCards />
-        <Suspense fallback={<>asd</>}>
+        <Suspense fallback={<></>}>
           <CommentSection />
         </Suspense>
       </main>
