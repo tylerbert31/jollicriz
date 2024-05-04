@@ -6,9 +6,7 @@ class CommentsModel extends AppModel {
     Swal.fire({
       imageUrl: url,
       imageAlt: "Comment Pic",
-      heightAuto: true,
       showConfirmButton: false,
-      imageHeight: "80%",
       showCloseButton: true,
     });
   }
