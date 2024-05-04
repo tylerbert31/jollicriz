@@ -14,7 +14,7 @@ const ProfileCards = async () => {
       {users.map((user, index) => (
         <div
           key={index}
-          className="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden"
+          className="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden active:scale-95 transition-all"
         >
           <div className="flex items-center p-4 space-x-4">
             <Avatar>

@@ -63,3 +63,11 @@ body {
 .colored-toast .swal2-html-container {
   color: white;
 }
+
+div:where(.swal2-container) div:where(.swal2-popup) {
+  background: none !important;
+}
+
+.swal2-image {
+  max-width: 90% !important;
+}

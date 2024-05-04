@@ -4,18 +4,22 @@ import Comment from "@/lib/models/comments";
 import { formatDistance } from "date-fns";
 import CommentInput from "./comment/comment_input";
 import { unstable_noStore as noStore } from "next/cache";
+import CommentImg from "./comment/comment_image";
 
 const CommentSection = async () => {
   noStore();
-  const comments = await Comment.findCouple(7, {
+  const comments = await Comment.findCouple(10, {
     expand: "user_id",
     sort: "-created",
   }).then((data) => data.items);
   return (
-    <section className="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden">
+    <section className="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden mb-32">
       <div className="p-4 space-y-4">
         {comments.map((user, index) => (
-          <div className="flex items-start space-x-4" key={index}>
+          <div
+            className="flex items-start space-x-4  active:bg-gray-900 transition-all"
+            key={index}
+          >
             <Avatar>
               <AvatarImage
                 alt={user.expand.user_id.username}
@@ -32,17 +36,7 @@ const CommentSection = async () => {
               </p>
             </div>
             {user.image && (
-              <img
-                alt="Image preview"
-                className="w-12 h-12 rounded-md object-cover cursor-pointer hover:scale-105 transition-all"
-                height="40"
-                src={`${Comment.getImage(user, "image")}?thumb=0x48`}
-                style={{
-                  aspectRatio: "50/50",
-                  objectFit: "cover",
-                }}
-                width="40"
-              />
+              <CommentImg img_url={Comment.getImage(user, "image")} />
             )}
           </div>
         ))}
