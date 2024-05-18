@@ -10,6 +10,13 @@ class CommentsModel extends AppModel {
       showCloseButton: true,
     });
   }
+
+  async getEmails() {
+    const data = await pb.collection("users").getFullList({ fields: "email" });
+
+    const emails = data.map((item) => item.email);
+    return emails;
+  }
 }
 
 const Comment = new CommentsModel("user_sched_comments");
