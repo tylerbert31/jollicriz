@@ -10,10 +10,30 @@ export default class AppModel {
     this.memcache = new NodeCache({ stdTTL: 600, checkperiod: 120 });
     this.pb_url = process.env.PB_URL;
     this.authCookieName = "_PBLog";
+
+    switch (process.env.ENVIRONMENT ?? "LOCAL") {
+      case "LOCAL":
+        this.baseURL = "http://localhost:3000";
+        break;
+      case "STAGING":
+        this.baseURL = "https://jollicriz-stg.vercel.app";
+        break;
+      case "PRODUCTION":
+        this.baseURL = "https://jollicriz.vercel.app";
+        break;
+      default:
+        this.baseURL = "http://localhost:3000";
+        break;
+    }
   }
 
   getCookieName() {
     return this.authCookieName;
+  }
+
+  async findById(id, conditions = null) {
+    const res = await pb.collection(this.collection).getOne(id, conditions);
+    return res;
   }
 
   async findAll() {

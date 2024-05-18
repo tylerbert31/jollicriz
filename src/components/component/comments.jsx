@@ -5,6 +5,7 @@ import { formatDistance } from "date-fns";
 import CommentInput from "./comment/comment_input";
 import { unstable_noStore as noStore } from "next/cache";
 import CommentImg from "./comment/comment_image";
+import Link from "next/link";
 
 const CommentSection = async () => {
   noStore();
@@ -16,9 +17,10 @@ const CommentSection = async () => {
     <section className="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden mb-32">
       <div className="p-4 space-y-4">
         {comments.map((user, index) => (
-          <div
-            className="flex items-start space-x-4  active:bg-gray-900 transition-all"
+          <Link
+            className="flex items-start space-x-4  active:bg-gray-900 transition-all hover:bg-gray-900"
             key={index}
+            href={`/threads/${user.id}`}
           >
             <Avatar>
               <AvatarImage
@@ -38,7 +40,7 @@ const CommentSection = async () => {
             {user.image && (
               <CommentImg img_url={Comment.getImage(user, "image")} />
             )}
-          </div>
+          </Link>
         ))}
         {/* Comment End */}
       </div>

@@ -66,6 +66,7 @@ const CommentInput = () => {
           required
           onChange={(e) => setComment(e.target.value)}
           value={comment}
+          disabled={sending}
         />
         {img_src && (
           <img
