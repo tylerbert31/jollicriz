@@ -47,6 +47,15 @@ class UserModel extends AppModel {
     memcache.set(token.value, user, 3600);
     return user;
   }
+
+  async getEmails() {
+    const data = await pb
+      .collection(this.collection)
+      .getFullList({ fields: "email" });
+
+    const emails = data.map((item) => item.email);
+    return emails;
+  }
 }
 
 const User = new UserModel("users");

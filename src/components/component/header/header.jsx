@@ -15,9 +15,12 @@ const Header = () => {
   return (
     <header className="bg-white dark:bg-gray-800 shadow-sm">
       <div className="container mx-auto flex items-center justify-between px-4 py-3 md:px-6">
-        <div className="text-2xl font-bold font-sans">
+        <Link
+          className="text-2xl font-bold font-sans hover:scale-[0.97] transition-all"
+          href="/home"
+        >
           {format(new Date(), "PPPP")}
-        </div>
+        </Link>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button size="icon" variant="ghost">
